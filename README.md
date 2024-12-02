@@ -10,8 +10,8 @@ A simple microblogging application that allows a single admin user to manage and
 5. [Running the Frontend](#running-the-frontend)
 6. [Environment Configuration](#environment-configuration)
 7. [Project Structure](#project-structure)
-
-8. ## Project Overview
+   
+## Project Overview
 
 In this project, we will build a personal microblogging website that allows a single admin user to manage and publish blog posts. The application will enable the admin to create, read, update, and delete blog entries, providing a platform for sharing content. Users visiting the site can view a list of blogs on the home page and access detailed views of individual blog posts. The application will also include search functionality, allowing users to find specific blogs by title or content.
 

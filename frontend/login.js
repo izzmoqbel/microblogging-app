@@ -1,17 +1,15 @@
 import { CONFIG } from "./config.js";
 
-loginForm.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () {
   const loginForm = document.getElementById("loginForm");
 
   if (loginForm) {
     loginForm.addEventListener("submit", function (e) {
       e.preventDefault();
 
-      console.log("Form submitted");
-
       const formData = new FormData(loginForm);
 
-      fetch(`${CONFIG.API_BASE_URL}:3000/login.php`, {
+      fetch(`${CONFIG.API_BASE_URL}/login.php`, {
         method: "POST",
         body: formData,
       })
@@ -23,7 +21,9 @@ loginForm.addEventListener("DOMContentLoaded", function () {
         })
         .then((data) => {
           if (data.success) {
+            console.log(data.message); 
             localStorage.setItem("isAdmin", "true");
+
             window.location.href = "index.html";
           } else {
             alert(data.message);

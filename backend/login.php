@@ -1,25 +1,35 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 include 'db.php';
-
-
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    $sql = "SELECT * FROM admins WHERE username = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-
-    $result = $stmt->get_result();
-
-    $admin = $result->fetch_assoc();
-
-    if ($admin && hash_equals($admin['password'], hash('sha265', $password))) {
-        echo json_encode(['success' => true, 'message' => 'Login successful']);
-    } else {
-        echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
+    if (empty($username) || empty($password)) {
+        echo json_encode(['success' => false, 'message' => 'Username and password are required']);
+        exit;
     }
+
+    $sql = "SELECT * FROM admins WHERE username = $1";
+    
+    $result = pg_query_params($conn, $sql, array($username));
+    
+    if ($result) {
+        $admin = pg_fetch_assoc($result); 
+
+        if ($admin && password_verify($password, $admin['password'])) {
+            echo json_encode(['success' => true, 'message' => 'Login successful']);
+        } else {
+            echo json_encode(['success' => false, 'message' => 'Invalid credentials']);
+        }
+    } else {
+        echo json_encode(['success' => false, 'message' => 'Database query failed']);
+    }
+} else {
+    echo json_encode(['success' => false, 'message' => 'Invalid request method']);
 }
+?>

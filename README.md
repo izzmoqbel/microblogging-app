@@ -55,7 +55,7 @@ To get started with the project, follow these steps:
 const CONFIG = {
   API_BASE_URL: "http://localhost:3000",
 };
-
+```
 
 ## Running the Backend
 

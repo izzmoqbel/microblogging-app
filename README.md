@@ -70,7 +70,7 @@ To run the backend, follow these steps:
 
  ```bash
      php -S localhost:3000
-    ```
+ ```
 
 3. Ensure the PostgreSQL service is running by executing: 
 

@@ -17,3 +17,112 @@ In this project, we will build a personal microblogging website that allows a si
 
 The project will be built using PHP for the backend, with HTML, CSS, and JavaScript for the frontend. The backend will handle data management, including user authentication and blog operations, while the frontend will focus on rendering the user interface and interacting with the backend APIs.
 
+## Prerequisites
+
+Before you begin, ensure that you have the following installed on your system:
+
+- **PHP 7.4 or higher**: The backend of this application is built with PHP. You can download it from [php.net](https://www.php.net/).
+- **PostgreSQL**: This application uses PostgreSQL as the database. You can install it from [postgresql.org](https://www.postgresql.org/).
+- **Browser**: To interact with the frontend and view the microblogging platform.
+
+## Installation
+
+To get started with the project, follow these steps:
+
+1. Clone the repository to your local machine:
+
+    ```bash
+    git clone https://github.com/izzmoqbel/microblogging-app
+    cd microblogging-app
+    ```
+
+2. Set up the Database:
+   - Open the backend/blog_db.sql file and execute the SQL queries to set up the database schema (admins, blogs).
+   - Ensure your PostgreSQL database is configured and running.
+
+3. Configure the database connection:
+- Open the `backend/db.php` file.
+- Modify the database credentials to match your PostgreSQL setup. Update the following variables:
+  - `hostname` (e.g., `localhost`)
+  - `username` (e.g., `postgres`)
+  - `password` (your database password)
+  - `dbname` (your database name)
+
+- Open the `frontend/config.js` file.
+- Update the `API_BASE_URL` to point to your backend server. For example:
+
+```javascript
+const CONFIG = {
+  API_BASE_URL: "http://localhost:3000",
+};
+
+
+## Running the Backend
+
+To run the backend, follow these steps:
+
+1. Open a Terminal or Command Prompt
+- Navigate to the `backend/` directory in your project folder.
+
+
+2. Start the PHP Built-in Server
+- Run the following command to start the PHP server:
+
+ ```bash
+     php -S localhost:3000
+    ```
+
+3. Ensure the PostgreSQL service is running by executing: 
+
+```bash
+    sudo service postgresql start
+```
+
+4. Navigate to the PHP backend directory and ensure that the database is accessible. You can access the login.php, blog.php, and other PHP files via your server at http://localhost:3000.
+
+## Running the Frontend
+
+To run the frontend, follow these steps:
+
+1. Open a Terminal or Command Prompt
+- Navigate to the `frontend` directory in your project folder.
+
+2. Start the PHP Built-in Server
+- Run the following command to start the PHP server:
+
+ ```bash
+     php -S localhost:8000
+    ```
+
+**Note:** The frontend communicates with the backend via API calls, so ensure the backend is running first.
+
+## Environment Configuration
+
+To configure the environment for running the application, follow these steps:
+
+### 1. Set Up the Database Connection
+
+- Open the `backend/db.php` file.
+- Update the database connection settings with your PostgreSQL credentials, such as:
+  - `username`
+  - `password`
+  - `database name`
+
+Ensure that these values match your PostgreSQL setup.
+
+### 2. Set Up the API Base URL
+
+- Open the `frontend/config.js` file.
+- Update the `API_BASE_URL` variable to point to the URL where the backend is hosted. For example:
+  
+  ```javascript
+  const API_BASE_URL = 'http://localhost:3000';
+  ```
+
+### 2. Install Required Tools
+    -Ensure that you have the following tools installed on your local machine:
+        -PHP: Required to run the backend PHP code.
+        -PostgreSQL: Required to run the database for storing and retrieving blog data.
+
+
+

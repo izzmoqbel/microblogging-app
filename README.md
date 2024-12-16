@@ -74,9 +74,9 @@ To run the backend, follow these steps:
 
 3. Ensure the PostgreSQL service is running by executing: 
 
-```bash
+ ```bash
     sudo service postgresql start
-```
+ ```
 
 4. Navigate to the PHP backend directory and ensure that the database is accessible. You can access the login.php, blog.php, and other PHP files via your server at http://localhost:3000.
 

@@ -2,12 +2,12 @@
 
 include "db.php";
 
-$sql = "SELECT * FROM blogs ORDER BY created_at DESC ";
+$sql = "SELECT * FROM blogs ORDER BY created_at DESC";
 $result = pg_query($conn, $sql);
 
 $blogs = [];
 
-while ($row = pg_fetch_row($result)) {
+while ($row = pg_fetch_assoc($result)) {
     $blogs[] = $row;
 }
 

@@ -1,8 +1,8 @@
-import { CONFIG } from "./config.js";
+import { CONFIG } from './config.js';
 
 document.addEventListener("DOMContentLoaded", function () {
   const isAdmin = localStorage.getItem("isAdmin") === "true";
-  fetchBlogs(isAdmin);
+  fetchBlogs(isAdmin); 
 
   const signout = document.getElementById("signout");
   if (signout) {
@@ -14,14 +14,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
   function fetchBlogs(isAdmin) {
     fetch(`${CONFIG.API_BASE_URL}/fetch_blogs.php`)
-      .then((response) => response.json())
+      .then((response) => response.json()) 
       .then((data) => {
-        const container = document.getElementById("blogContainer");
+        console.log(data);
+        const container = document.getElementById("blogsContainer");
         container.innerHTML = "";
 
         data.forEach((blog) => {
           const card = document.createElement("div");
-          card.textContent = blog.card;
+          card.classList.add("blog-card");
 
           const title = document.createElement("h3");
           title.textContent = blog.title;
@@ -29,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
           if (blog.image_url) {
             const img = document.createElement("img");
             img.src = blog.image_url;
+            img.alt = blog.title;
             img.classList.add("blog-image");
             card.appendChild(img);
           }
@@ -79,3 +81,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   };
 });
+
+
+
+
+
+
+
+

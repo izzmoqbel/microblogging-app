@@ -15,20 +15,25 @@
     <script src="header_script.js"></script>
   </head>
   <body>
+    <!-- Container to hold the dynamically loaded header content -->
     <div id="header-container"></div>
+
+    <!-- Container for the search input field -->
     <div class="search-container">
       <input
         type="text"
-        name=""
         id="searchInput"
         placeholder="Search blog by title or content..."
         onkeyup="searchBlogs()"
       />
     </div>
-    <div class="blog-container" id="blogContainer">
 
+    <!-- Container where blog posts will be dynamically loaded -->
+    <div id="blogsContainer" class="blogs-container">
+      <!-- Blog cards will be dynamically inserted here -->
     </div>
-    <script type="module" src="script.js"></script>
 
+    <!-- Load the main script that handles blog functionality -->
+    <script type="module" src="script.js"></script>
   </body>
 </html>

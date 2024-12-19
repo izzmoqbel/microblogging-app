@@ -17,7 +17,7 @@ fetch("header.html")
 
       if (page === "index.html") {
         createBlogBtn.style.display = "inline-block";
-      } else if (page === "create_Blog.html" || page === "blog_details.html") {
+      } else if (page === "create_blog.html" || page === "blog_details.html") {
         backToBlogsBtn.style.display = "inline-block";
       }
     } else {

@@ -59,27 +59,25 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   }
 
-  window.searchBlogs = function () {
-    const input = document.getElementById("searchInput");
-    const filter = input.value.toLowerCase();
-    const cards = document.getElementsByClassName("blog-card");
-    const title = document.getElementsByTagName("h3");
-    const content = document.getElementsByTagName("p");
+window.searchBlogs = function () {
+  const input = document.getElementById("searchInput");
+  const filter = input.value.toLowerCase();
+  const cards = document.getElementsByClassName("blog-card");
 
-    for (let i = 0; cards.length; i++) {
-      const title = title[i].textContent || title[i].innerText;
-      const content = content[i].textContent || content[i].innerText;
+  for (let i = 0; i < cards.length; i++) { 
+    const title = cards[i].querySelector("h3").textContent || "";
+    const content = cards[i].querySelector("p").textContent || "";
 
-      if (
-        title.toLowerCase().indexOf(filter) > -1 ||
-        content.toLowerCase().indexOf(filter) > -1
-      ) {
-        cards[i].style.display = "";
-      } else {
-        cards[i].style.display = "none";
-      }
+    if (
+      title.toLowerCase().includes(filter) || 
+      content.toLowerCase().includes(filter)
+    ) {
+      cards[i].style.display = ""; 
+    } else {
+      cards[i].style.display = "none"; 
     }
-  };
+  }
+};
 });
 
 

@@ -120,9 +120,9 @@ Ensure that these values match your PostgreSQL setup.
   ```
 
 ### 2. Install Required Tools
--Ensure that you have the following tools installed on your local machine:
-    -PHP: Required to run the backend PHP code.
-    -PostgreSQL: Required to run the database for storing and retrieving blog data.
+- Ensure that you have the following tools installed on your local machine:
+  - PHP: Required to run the backend PHP code.
+  - PostgreSQL: Required to run the database for storing and retrieving blog data.
 
 
 

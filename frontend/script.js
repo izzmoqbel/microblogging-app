@@ -93,7 +93,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const removeImageIcon = document.getElementById("removeImageIcon");
 
     if (currentContent) {
-      const fileName = currentImageUrl.spilt("/").pop();
+      
+      const fileName = currentImageUrl.split("/").pop();
       const dataTransfer = new DataTransfer();
       const file = new File([""], fileName);
       dataTransfer.items.add(file);
@@ -155,25 +156,33 @@ document.addEventListener("DOMContentLoaded", function () {
       });
   });
 
-  function deleteBlog(id) {
-    if (confirm("Are you sure you want to delete this blog?")) {
-      fetch(`${CONFIG.API_BASE_URL}/delete_blog.php`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded",
-        },
-        body: `id=${id}`,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.success) {
-            fetchBlogs(true);
-          } else {
-            alert(data.message);
-          }
-        });
+  function deleteBlog(blogId) {
+    if (!confirm("Are you sure you want to delete this blog?")) {
+      return;
     }
+  
+    fetch(`${CONFIG.API_BASE_URL}/delete_blog.php`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: blogId }),
+    })
+    .then((response) => response.json())
+      .then((data) => {
+        if (data.success) {
+          alert(data.message);
+         fetchBlogs();
+        } else {
+          alert("Error: " + data.message);
+        }
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+        alert("An unexpected error occurred: " + error.message);
+      });
   }
+  
 
   window.searchBlogs = function () {
     const input = document.getElementById("searchInput");

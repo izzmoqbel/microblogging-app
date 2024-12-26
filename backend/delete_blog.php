@@ -1,29 +1,31 @@
 <?php
 
-include 'db.php';
+include "db.php";
 
-if ($_SERVER["REQUEST_METHOD"] == $_POST) {
-    $id = $_POST['id'];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $sql = "DELETE FROM blogs WHERE id=$1";
+    // Get the input data
+    $input = json_decode(file_get_contents("php://input"), true);
+    $id = $input['id'];
 
-    $result = pg_prepare($conn,"delete_blog",$sql);
-
-    if($result === false){
-        $error = pg_last_error($conn);
-        echo json_encode(['success' => false, 'message' => 'Error:' . $error  ]);
+    if (!$id) {
+        echo json_encode(['success' => false, 'message' => 'Invalid blog ID']);
         exit;
     }
 
-    $result = pg_execute($conn,"delete_blog",[$id]);
+    // Delete query
+    $query = "DELETE FROM blogs WHERE id = $1";
+    $result = pg_query_params($conn, $query, [$id]);
 
-    if($result){
+    if ($result) {
         echo json_encode(['success' => true, 'message' => 'Blog deleted successfully']);
-    } else{
+    } else {
         $error = pg_last_error($conn);
-        echo json_encode(['success' => false, 'message' => 'Error:' . $error]);
+        echo json_encode(['success' => false, 'message' => 'Error: ' . $error]);
     }
 
     pg_close($conn);
-
+} else {
+    echo json_encode(['success' => false, 'message' => 'Invalid request method']);
 }
+?>

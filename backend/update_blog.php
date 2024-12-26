@@ -1,19 +1,22 @@
 <?php
 
-if ($_SERVER["REQUEST_METHOD"] == $_POST) {
+include 'db.php';
+
+
+if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $id = $_POST['id'];
     $title = $_POST['title'];
     $content = $_POST['content'];
-    $removeImg = isset($_POST['removeImg']) && $_POST['removeImg'] === 'true';
+    $removeImg = isset($_POST['removeImage']) && $_POST['removeImage'] === 'true';
 
-    if(strlen($content) < 500){
-    json_encode(['success' => false, 'message' => 'Content must be at least 500 characters.']);
-    exit;
+    if (strlen($content) < 500) {
+        echo json_encode(['success' => false, 'message' => 'Content must be at least 500 characters.']);
+        exit;
     }
 
-    $image_url ="";
+    $image_url = "";
 
-    if (isset($_FILES['image']) && $_FILES['image']['error'] == 0) {
+    if (isset($_FILES['image']) && $_FILES['image']['error'] === 0) {
         $img_name = basename($_FILES['image']['name']);
         $img_tmp_name = $_FILES['image']['tmp_name'];
         $upload_dir = __DIR__ . '/../frontend/uploads/';
@@ -31,29 +34,23 @@ if ($_SERVER["REQUEST_METHOD"] == $_POST) {
         }
     }
 
-    if($removeImg){
-        $query = "UPDATE blogs SET title =$1, content =$2, image_url=NULL WHERE id =$3";
-        $result = pg_prepare($conn,"update_blog_no_image",$query);
-        $result = pg_execute($conn,"update_blog_no_image",array($title,$content,$id));
-    } elseif($newImg_url){
-        $query = "UPDATE blogs SET title =$1, content =$2, image_url =$3 WHERE id=$4";
-        $result = pg_prepare($conn,"update_blog_with_image",$query);
-        $result = pg_execute($conn,"update_blog_with_image",array($title,$content,$image_url,$id));
-    } else{
-        $query = "UPDATE blogs SET title =$1, content =$2 WHERE id =$3";
-        $result = pg_prepare($conn,"update_blog_only_text",$query);
-        $result = pg_execute($conn,"update_blog_only_text",array($title,$content,$id));
+    if ($removeImg) {
+        $query = "UPDATE blogs SET title = $1, content = $2, image_url = NULL WHERE id = $3";
+        $result = pg_query_params($conn, $query, [$title, $content, $id]);
+    } elseif ($image_url) {
+        $query = "UPDATE blogs SET title = $1, content = $2, image_url = $3 WHERE id = $4";
+        $result = pg_query_params($conn, $query, [$title, $content, $image_url, $id]);
+    } else {
+        $query = "UPDATE blogs SET title = $1, content = $2 WHERE id = $3";
+        $result = pg_query_params($conn, $query, [$title, $content, $id]);
     }
 
-    if($result){
+    if ($result) {
         echo json_encode(['success' => true, 'message' => 'Blog updated successfully']);
-    } else{
+    } else {
         $error = pg_last_error($conn);
         echo json_encode(['success' => false, 'message' => 'Error: ' . $error]);
     }
 
-
     pg_close($conn);
-
-
 }

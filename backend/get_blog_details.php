@@ -1,27 +1,26 @@
 <?php
-
 include "db.php";
 
-if($_SERVER["REQUEST_METHOD"] == $_GET && isset($_GET['id'])){
 
+if ($_SERVER["REQUEST_METHOD"] === "GET" && isset($_GET['id'])) {
     $id = intval($_GET['id']);
 
-    $query = "SELECT * FROM blogs WHERE id=$1";
-    $result = pg_query_params($db, $query, array($id)); 
+    $query = "SELECT * FROM blogs WHERE id = $1";
+    $result = pg_query_params($conn, $query, array($id));
 
-    if($result){
+    if ($result) {
         $blog = pg_fetch_assoc($result);
 
-        if($blog){
-            echo json_encode(["success" => true,"blog"=>$blog]);
-        } else{
+        if ($blog) {
+            echo json_encode(["success" => true, "blog" => $blog]);
+        } else {
             echo json_encode(["success" => false, "message" => "Blog not found."]);
         }
-    } else{
+    } else {
+        error_log("Database query error: " . pg_last_error($db));
         echo json_encode(["success" => false, "message" => "Database query error"]);
     }
-
-} else{
+} else {
     echo json_encode(["success" => false, "message" => "Invalid request."]);
 }
 

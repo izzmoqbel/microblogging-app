@@ -172,7 +172,8 @@ document.addEventListener("DOMContentLoaded", function () {
       .then((data) => {
         if (data.success) {
           alert(data.message);
-         fetchBlogs();
+          const isAdmin = localStorage.getItem("isAdmin") === "true";
+         fetchBlogs(isAdmin);
         } else {
           alert("Error: " + data.message);
         }

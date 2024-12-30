@@ -3,6 +3,7 @@
 A simple microblogging application that allows a single admin user to manage and publish blog posts. The admin can perform CRUD operations on blog entries, while users can view blogs and search for posts by title or content. This app is built using PHP for the backend, with HTML, CSS, and JavaScript for the frontend.
 
 ## Table of Contents
+
 1. [Project Overview](#project-overview)
 2. [Prerequisites](#prerequisites)
 3. [Installation](#installation)
@@ -10,7 +11,7 @@ A simple microblogging application that allows a single admin user to manage and
 5. [Running the Frontend](#running-the-frontend)
 6. [Environment Configuration](#environment-configuration)
 7. [Project Structure](#project-structure)
-   
+
 ## Project Overview
 
 In this project, we will build a personal microblogging website that allows a single admin user to manage and publish blog posts. The application will enable the admin to create, read, update, and delete blog entries, providing a platform for sharing content. Users visiting the site can view a list of blogs on the home page and access detailed views of individual blog posts. The application will also include search functionality, allowing users to find specific blogs by title or content.
@@ -31,18 +32,21 @@ To get started with the project, follow these steps:
 
 1. Clone the repository to your local machine:
 
-    ```bash
-    git clone https://github.com/izzmoqbel/microblogging-app
-    cd microblogging-app
-    ```
+   ```bash
+   git clone https://github.com/izzmoqbel/microblogging-app
+   cd microblogging-app
+   ```
 
 2. Set up the Database:
+
    - Open the backend/blog_db.sql file and execute the SQL queries to set up the database schema (admins, blogs).
    - Ensure your PostgreSQL database is configured and running.
 
 3. Configure the database connection:
+
 - Open the `backend/db.php` file.
 - Modify the database credentials to match your PostgreSQL setup. Update the following variables:
+
   - `hostname` (e.g., `localhost`)
   - `username` (e.g., `postgres`)
   - `password` (your database password)
@@ -62,21 +66,22 @@ const CONFIG = {
 To run the backend, follow these steps:
 
 1. Open a Terminal or Command Prompt
+
 - Navigate to the `backend/` directory in your project folder.
 
-
 2. Start the PHP Built-in Server
+
 - Run the following command to start the PHP server:
 
- ```bash
-     php -S localhost:3000
- ```
+```bash
+    php -S localhost:3000
+```
 
-3. Ensure the PostgreSQL service is running by executing: 
+3. Ensure the PostgreSQL service is running by executing:
 
- ```bash
-    sudo service postgresql start
- ```
+```bash
+   sudo service postgresql start
+```
 
 4. Navigate to the PHP backend directory and ensure that the database is accessible. You can access the login.php, blog.php, and other PHP files via your server at http://localhost:3000.
 
@@ -85,14 +90,16 @@ To run the backend, follow these steps:
 To run the frontend, follow these steps:
 
 1. Open a Terminal or Command Prompt
+
 - Navigate to the `frontend` directory in your project folder.
 
 2. Start the PHP Built-in Server
+
 - Run the following command to start the PHP server:
 
- ```bash
-     php -S localhost:8000
- ```
+```bash
+    php -S localhost:8000
+```
 
 **Note:** The frontend communicates with the backend via API calls, so ensure the backend is running first.
 
@@ -114,15 +121,47 @@ Ensure that these values match your PostgreSQL setup.
 
 - Open the `frontend/config.js` file.
 - Update the `API_BASE_URL` variable to point to the URL where the backend is hosted. For example:
-  
+
   ```javascript
-  const API_BASE_URL = 'http://localhost:3000';
+  const API_BASE_URL = "http://localhost:3000";
   ```
 
 ### 2. Install Required Tools
+
 - Ensure that you have the following tools installed on your local machine:
   - PHP: Required to run the backend PHP code.
   - PostgreSQL: Required to run the database for storing and retrieving blog data.
 
+```bash
+microblogging-app/
+│
+├── backend/
+│   ├── db.php
+│   ├── blog_db.sql
+│   ├── add_blog.php
+│   ├── update_blog.php
+│   ├── fetch_blogs.php
+│   ├── get_blog_details.php
+│   ├── login.php
+│   ├── logout.php
+│   └── delete_blog.php
 
 
+│
+├── frontend/
+│   ├── index.html
+│   ├── config.js
+│   ├── styles.css
+│   ├── header_script.js
+│   ├── header.html
+│   ├── scripts.js
+│   ├── blog_details.html
+│   ├── create_Blog.html
+│   ├── create_blog.js
+│   ├── login.html
+│   ├── login.js
+│   ├── script_blog_details.js
+│   └── uploads/
+│
+├── README.md
+```

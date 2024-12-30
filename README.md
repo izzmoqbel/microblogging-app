@@ -42,15 +42,27 @@ To get started with the project, follow these steps:
    - Open the backend/blog_db.sql file and execute the SQL queries to set up the database schema (admins, blogs).
    - Ensure your PostgreSQL database is configured and running.
 
-3. Configure the database connection:
+3. Create the .env file:
+   In the root of the project directory (where the README.md is located), create a .env file and add the following environment variables for your PostgreSQL database connection:
+   ```bash
+DB_HOST=your_database_host
+DB_PORT=your_database_port
+DB_USERNAME=your_database_username
+DB_PASSWORD=your_database_password
+DB_NAME=your_database_name
+```
+Make sure to replace the values with your own database credentials if needed. This file will store sensitive information such as your database credentials securely.
+
+4. Configure the database connection:
+   
 
 - Open the `backend/db.php` file.
-- Modify the database credentials to match your PostgreSQL setup. Update the following variables:
+- Instead of hardcoding the database credentials, modify the script to load the credentials from the .env file. You can use the phpdotenv library to load these values.
+To install phpdotenv, run the following command in your backend directory:
 
-  - `hostname` (e.g., `localhost`)
-  - `username` (e.g., `postgres`)
-  - `password` (your database password)
-  - `dbname` (your database name)
+```bash
+composer require vlucas/phpdotenv
+```
 
 - Open the `frontend/config.js` file.
 - Update the `API_BASE_URL` to point to your backend server. For example:

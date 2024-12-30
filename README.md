@@ -131,6 +131,8 @@ Ensure that these values match your PostgreSQL setup.
 - Ensure that you have the following tools installed on your local machine:
   - PHP: Required to run the backend PHP code.
   - PostgreSQL: Required to run the database for storing and retrieving blog data.
+ 
+## Project Structure
 
 ```bash
 microblogging-app/
@@ -145,8 +147,6 @@ microblogging-app/
 │   ├── login.php
 │   ├── logout.php
 │   └── delete_blog.php
-
-
 │
 ├── frontend/
 │   ├── index.html

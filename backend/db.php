@@ -28,4 +28,3 @@ $conn_string = "host=$db_host port=$db_port dbname=$db_name user=$db_username pa
 
 $conn = pg_connect($conn_string);
 
-

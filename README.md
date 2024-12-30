@@ -44,7 +44,7 @@ To get started with the project, follow these steps:
 
 3. Create the .env file:
    In the root of the project directory (where the README.md is located), create a .env file and add the following environment variables for your PostgreSQL database connection:
-   ```bash
+```bash
 DB_HOST=your_database_host
 DB_PORT=your_database_port
 DB_USERNAME=your_database_username

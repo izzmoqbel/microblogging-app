@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Microblogging App</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+      integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="header_script.js"></script>
+  </head>
+  <body>
+    <div id="header-container"></div>
+
+    <div class="search-container">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Search blog by title or content..."
+        onkeyup="searchBlogs()"
+      />
+    </div>
+
+    <div id="blogsContainer" class="blogs-container"></div>
+
+    <div id="editModal" class="modal">
+      <div class="modal-content">
+        <span class="close-button">&times;</span>
+        <h2>Edit Blog</h2>
+        <br /><br />
+        <form id="editForm" enctype="multipart/form-data" >
+          <label for="editTitle">Title:</label>
+          <input type="text" id="editTitle" name="editTitle" required /><br />
+
+          <label for="editContent">Content:</label>
+          <textarea id="editContent" name="editContent" required></textarea
+          >
+          <small id="editContentHelp" class="help-text">
+            * Content should be at least 500 characters.
+          </small
+          ><br />
+
+          <label for="editImage">Change Image:</label>
+          <div class="file-row">
+            <input type="file" id="editImage" name="editImage" />
+            <i id="removeImageIcon" class="fas fa-times remove-icon"></i>
+          </div>
+
+          <input type="hidden" id="editId" />
+
+          <div class="modal-buttons">
+            <button type="button" id="cancelEdit">Cancel</button>
+            <input type="submit" value="Save" />
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="script.js"></script>
+  </body>
+</html>
